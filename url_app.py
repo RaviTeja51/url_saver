@@ -11,8 +11,8 @@
 
 import tkinter as tk
 import openpyxl as xl
-from pyperclip import copy,paste
 from openpyxl.styles import colors,Font,Alignment,NamedStyle
+from pyperclip import copy,paste
 from web_open import search
 
 #----------------------------------------#
@@ -219,8 +219,11 @@ def show():
 
             show_.destroy()
         else:
-            for i in items:
-                col = int(i) + 2
+             for i in items:
+                link =  listbox.get(int(i))
+                for cell in sheet['A']:
+                    if cell.value == link:
+                        row =  cell.row
                 search(str(sheet[f'B{col}'].value))
 
     delete1 = tk.Button(show_,text = "Delete",fg = "green",bg = "white",command = lambda:delete())
